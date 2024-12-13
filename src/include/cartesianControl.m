@@ -25,7 +25,29 @@ classdef cartesianControl < handle
             % bTg : goal frame
             % Outputs :
             % x_dot : cartesian reference for inverse kinematic control
+
+            lambda = eye(6);
+
+            lambda(1:3, 1:3) = eye(3) *  self.k_a; 
+            lambda(4:6, 4:6) = eye(3) *  self.k_l;
             
+            bTt = self.gm.getToolTransformWrtBase();
+            bRt = bTt(1:3, 1:3);
+            tRb = transpose(bRt);
+
+            tRg = tRb * bTg(1:3, 1:3);
+            
+
+            %TODO: check if we need to use ypr or angle axis
+            be = zeros(6, 1);
+            [h, theta] = RotToAngleAxis(tRg);
+
+            trho = h * theta;
+
+            be(1:3) = trho * bRt;
+            be(4:6) = bTg(1:3, 4) - bTt (1:3, 4);
+
+            x_dot = lambda * be;
         end
     end
 end
