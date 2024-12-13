@@ -1,0 +1,45 @@
+\section{Assignment description}
+The third assignment of Modelling and Control of Manipulators focuses on Inverse Kinematics (IK) control of a robotic manipulator.
+
+The third assignment consists of three exercises. You are asked to:
+\begin{itemize}
+    \item Download the .zip file called MCM\_assignment3.zip from the Aulaweb page of this course.
+    \item Implement the code to solve the exercises on MATLAB by filling in the predefined files. In particular, you will find two different main files: \textit{"ex1.m"} for the first exercise and \textit{"ex2.m"} for the second exercise.
+    \item Write a report motivating your answers, following the predefined format on this document.
+    \item \textbf{Putting code in the report is not an explanation!}
+\end{itemize}
+
+\subsection{Exercise 1}
+
+Given the geometric model of an industrial manipulator used in the previous assignment, you have to add a tool frame.
+The tool frame is rigidly attached to the robot end-effector according to the following specifications:  
+
+Use the following specifications
+$ {}^e \eta_{t/e}=[0,0,\pi/10], {}^eO_t=[0.2,0,0]^{\top}(cm)$ 
+where ${}^e\eta_{t/e}$ represents the YPR values from end effector frame to tool frame.
+
+To complete this task you should modify the class \textit{geometricModel} by adding a new method called \textit{getToolTransformWrtBase}
+
+\subsection{Exercise 2}
+
+Implement an inverse kinematic control loop to control the tool of the manipulator. You should be able to complete this exercise by using the MATLAB classes implemented for the previous assignment (\textit{geometricModel},\textit{kinematicModel}), and also you need to implement a new class \textit{cartesianControl} (see the template attached). The procedure can be split into the following phases
+
+\textbf{Q2.1} Compute the cartesian error between the robot end-effector frame $^b_t T$ and the goal frame $^b_{g} T$.
+
+The goal frame  must be defined knowing that:
+\begin{itemize}
+    \item The goal position with respect to the base frame is $^b O_g = [0.15, -0.85, 0.3]^\top(m)$
+    \item The goal frame is rotated of $\theta = \pi/6$ around the y-axis of the base frame (inertial frame).
+\end{itemize}
+
+\textbf{Q2.2}
+Compute the desired angular and linear reference velocities of the end-effector  with respect to the base: $^b \nu^*_{t/0} = \begin{bmatrix}
+    \kappa_a &0\\
+    0 &\kappa_l
+\end{bmatrix}\cdot \begin{bmatrix} \omega^*_{t/0} \\  v^*_{t/0} \end{bmatrix}$, such that $\kappa_{a} = 0.8$,$\kappa_{l} = 0.8$ is the gain.
+    
+\textbf{Q2.3}
+Compute the desired joint velocities $\dot{\bar{q}}$
+
+\textbf{Q2.4}
+Simulate the robot motion by implementing the function: \textit{"KinematicSimulation()"} for integrating the joint velocities in time.
