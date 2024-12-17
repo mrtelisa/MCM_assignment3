@@ -44,8 +44,8 @@ disp(bTt);
 
 %% Define the goal frame and initialize cartesian control
 % Goal definition 
-bO_g = [0.15; -0.85; 0.3];
-beta_gb = [0, pi/6, 0];
+bO_g = [-0.14; -0.85; 0.6]; %(m) x-y-z
+beta_gb = [-3.02,-0.40,-1.33]; %(rad) YAW-PITCH-ROLL
 
 bRg = YPRToRot(beta_gb(1), beta_gb(2), beta_gb(3));
 bTg = eye(4);
@@ -88,7 +88,7 @@ x_dot_hist = [];
 t_hist = [];
 
 % Show simulation ? %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-show_simulation = false;
+show_simulation = true;
 tool = true;
 
 % init plot
