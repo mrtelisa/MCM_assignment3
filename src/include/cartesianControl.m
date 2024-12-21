@@ -44,7 +44,7 @@ classdef cartesianControl < handle
 
             trho = h * theta;
 
-            be(1:3) = trho * bRt;
+            be(1:3) = bRt * transpose(trho);
             be(4:6) = bTg(1:3, 4) - bTt (1:3, 4);
 
             x_dot = lambda * be;
