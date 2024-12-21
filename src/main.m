@@ -67,7 +67,7 @@ q = [pi/2, -pi/4, 0, -pi/4, 0, 0.15, pi/4]';
 %% Initialize control loop 
 
 % Simulation variables
-samples = 100;
+samples = 10000;
 t_start = 0.0;
 t_end = 10.0;
 dt = (t_end-t_start)/samples;
