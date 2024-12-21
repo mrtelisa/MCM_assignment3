@@ -28,8 +28,8 @@ classdef cartesianControl < handle
 
             lambda = eye(6);
 
-            lambda(1:3, 1:3) = eye(3) *  self.k_a; 
-            lambda(4:6, 4:6) = eye(3) *  self.k_l;
+            lambda(1:3, 1:3) = self.k_a * eye(3); 
+            lambda(4:6, 4:6) = self.k_l * eye(3);
             
             bTt = self.gm.getToolTransformWrtBase();
             bRt = bTt(1:3, 1:3);
